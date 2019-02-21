@@ -85,7 +85,7 @@ public class ReflexionTest {
                 System.out.println("No hub nada");
             }
             System.out.println("qu es: ");
-            //Class r = (Class)dicWeb.get("com.mycompany.reflexiontest.Calculadora");
+            //Class r = (Class)dicWeb.get("com.mycompany.reflexiontest.Suma");
             Class r = (Class)dicWeb.get("com.mycompany.reflexiontest.Suma");
             //com.mycompany.reflexiontest.Suma
             System.out.println("loco  ooooo");

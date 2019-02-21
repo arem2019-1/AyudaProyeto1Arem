@@ -39,48 +39,34 @@ public class ReflexionTest {
                 File[] ficheros = f.listFiles();
                 System.out.println("Mostraremos ficheros");
                 for(File re:ficheros){
-                    System.out.println("Miremos el path : "+re.toPath());
-                    System.out.println("miremos a fonod : "+re.toPath().toString());
-                    System.out.println(re.toPath().toString());
+                    //System.out.println("miremos a fonod : "+re.toPath().toString());
                     String temp1=re.toPath().toString();
                     String temp2=temp1.replace(".class", "");
-                    //target\classes\
                     String temp3=temp2.replace("target\\classes\\","");
                     String temp4=temp3.replace("\\", ".");
-                    System.out.println("miremos resultado : "+temp4);
                     Class q = Class.forName(temp4);
-                    //String temp=re.toPath().toString();
-                    //String[] temp2=temp.split(" ");
-                    //System.out.println("MIremos cano path: "+re.getCanonicalPath());
-                    //System.out.println("miremos  :cano file "+re.getCanonicalFile());
-                    //System.out.println("mire lol "+re.);
-                    //Class<?> q=q = Class.forName(temp2);
                     System.out.println("miremos q : "+q);
-                    //q = Class.forName(
-                    //System.out.println("miremos q : "+q);
-                
                 }
                         
-                //System.out.println("siii");
-                       // System.out.println("lomng : "+ficheros.length);
-                for (int x = 0; x < ficheros.length; x++) {
-                    System.out.println(ficheros[x].getName());
-                    File t=ficheros[x];
-                    
-                    System.out.println("miremos "+t.getPath());
-                    
-                    
-                    //Class temp=ficheros[x].getName().getClass();    
-                    Class temp=t.getPath().getClass();
-                    System.out.println("nombre clase "+temp);
+          
+                 System.out.println("lomng : "+ficheros.length);
+                for (File re:ficheros) {
+                    String temp1=re.toPath().toString();
+                    String temp2=temp1.replace(".class", "");
+                    String temp3=temp2.replace("target\\classes\\","");
+                    String temp4=temp3.replace("\\", ".");
+                    Class q = Class.forName(temp4);
+                    System.out.println("miremos "+q);
+
                     //Method[] m=temp.getMethods();
-                    for(Method m : temp.getMethods()){
-                        //System.out.println("popo");
+                    for(Method m : q.getMethods()){
+                        System.out.println("popo");
                         if(m.isAnnotationPresent(Web.class)){
                             System.out.println("si tiene anota web "+m.getName());
                             try{
-                                m.invoke(null);
                                 System.out.println("lolol");
+                                System.out.println("Miremos resultado . "+m.invoke(null,30));
+                                
                             
                             }catch(Throwable ex){
                                 System.out.println("Fallo por puto");
@@ -99,7 +85,6 @@ public class ReflexionTest {
             }else {
                 System.out.println("No hub nada");
             }
-
             System.out.println(c.toGenericString());
             Method[] ml = c.getDeclaredMethods();
             for (Method m : ml) {
@@ -108,8 +93,6 @@ public class ReflexionTest {
             Method m = c.getDeclaredMethod("cuadrado", int.class);
             System.out.println(m);
             System.out.println(m.invoke(null, 25));
-
-
         } catch (NoSuchMethodException ex) {
             Logger.getLogger(ReflexionTest.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SecurityException ex) {

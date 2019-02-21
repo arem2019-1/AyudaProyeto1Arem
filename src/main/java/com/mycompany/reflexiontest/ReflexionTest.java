@@ -32,12 +32,14 @@ public class ReflexionTest {
 
             Hashtable<String, Object> dicWeb = new Hashtable<String, Object>();
 
-            Class c = Class.forName("com.mycompany.reflexiontest.Calculadora");
+            //Class c = Class.forName("com.mycompany.reflexiontest.Calculadora");
+            Class c=Class.class;
 
             File f = new File("target/classes/com/mycompany/reflexiontest");
             if (f.exists()) {
                 File[] ficheros = f.listFiles();
                 System.out.println("Mostraremos ficheros");
+                /**
                 for(File re:ficheros){
                     //System.out.println("miremos a fonod : "+re.toPath().toString());
                     String temp1=re.toPath().toString();
@@ -47,7 +49,7 @@ public class ReflexionTest {
                     Class q = Class.forName(temp4);
                     System.out.println("miremos q : "+q);
                 }
-                        
+                   */     
           
                  System.out.println("lomng : "+ficheros.length);
                 for (File re:ficheros) {
@@ -55,13 +57,14 @@ public class ReflexionTest {
                     String temp2=temp1.replace(".class", "");
                     String temp3=temp2.replace("target\\classes\\","");
                     String temp4=temp3.replace("\\", ".");
-                    Class q = Class.forName(temp4);
-                    System.out.println("miremos "+q);
+                    c = Class.forName(temp4);
+                    System.out.println("miremos "+c);
 
                     //Method[] m=temp.getMethods();
-                    for(Method m : q.getMethods()){
-                        System.out.println("popo");
+                    for(Method m : c.getMethods()){
+                        //System.out.println("popo");
                         if(m.isAnnotationPresent(Web.class)){
+                            dicWeb.put(temp4,c);
                             System.out.println("si tiene anota web "+m.getName());
                             try{
                                 System.out.println("lolol");
@@ -77,20 +80,25 @@ public class ReflexionTest {
                         }
                     
                     }
-                    //if()){
-                    
-                    
-                    //}
                 }
             }else {
                 System.out.println("No hub nada");
             }
-            System.out.println(c.toGenericString());
-            Method[] ml = c.getDeclaredMethods();
+            System.out.println("qu es: ");
+            //Class r = (Class)dicWeb.get("com.mycompany.reflexiontest.Calculadora");
+            Class r = (Class)dicWeb.get("com.mycompany.reflexiontest.Suma");
+            //com.mycompany.reflexiontest.Suma
+            System.out.println("loco  ooooo");
+            System.out.println(r.toGenericString());
+            
+            Method[] ml = r.getDeclaredMethods();
             for (Method m : ml) {
                 System.out.println(m);
             }
-            Method m = c.getDeclaredMethod("cuadrado", int.class);
+            String temp="cuadrado";
+            String temp2="suma";
+            
+            Method m = r.getDeclaredMethod(temp2, int.class);
             System.out.println(m);
             System.out.println(m.invoke(null, 25));
         } catch (NoSuchMethodException ex) {

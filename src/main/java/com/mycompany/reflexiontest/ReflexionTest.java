@@ -5,6 +5,7 @@
  */
 package com.mycompany.reflexiontest;
 
+import com.sun.corba.se.impl.oa.poa.AOMEntry;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.logging.Level;
@@ -38,12 +39,25 @@ public class ReflexionTest {
                 File[] ficheros = f.listFiles();
                 System.out.println("Mostraremos ficheros");
                 for(File re:ficheros){
-                    System.out.println("Miremos el path"+re.toPath());
-                    System.out.println("MIremos cano path: "+re.getCanonicalPath());
-                    System.out.println("miremos  :cano file "+re.getCanonicalFile());
-                    //Class<?> q=Class.;
+                    System.out.println("Miremos el path : "+re.toPath());
+                    System.out.println("miremos a fonod : "+re.toPath().toString());
+                    System.out.println(re.toPath().toString());
+                    String temp1=re.toPath().toString();
+                    String temp2=temp1.replace(".class", "");
+                    //target\classes\
+                    String temp3=temp2.replace("target\\classes\\","");
+                    String temp4=temp3.replace("\\", ".");
+                    System.out.println("miremos resultado : "+temp4);
+                    Class q = Class.forName(temp4);
+                    //String temp=re.toPath().toString();
+                    //String[] temp2=temp.split(" ");
+                    //System.out.println("MIremos cano path: "+re.getCanonicalPath());
+                    //System.out.println("miremos  :cano file "+re.getCanonicalFile());
+                    //System.out.println("mire lol "+re.);
+                    //Class<?> q=q = Class.forName(temp2);
+                    System.out.println("miremos q : "+q);
+                    //q = Class.forName(
                     //System.out.println("miremos q : "+q);
-                    
                 
                 }
                         

@@ -36,8 +36,19 @@ public class ReflexionTest {
             File f = new File("target/classes/com/mycompany/reflexiontest");
             if (f.exists()) {
                 File[] ficheros = f.listFiles();
-                System.out.println("siii");
-                        System.out.println("lomng : "+ficheros.length);
+                System.out.println("Mostraremos ficheros");
+                for(File re:ficheros){
+                    System.out.println("Miremos el path"+re.toPath());
+                    System.out.println("MIremos cano path: "+re.getCanonicalPath());
+                    System.out.println("miremos  :cano file "+re.getCanonicalFile());
+                    //Class<?> q=Class.;
+                    //System.out.println("miremos q : "+q);
+                    
+                
+                }
+                        
+                //System.out.println("siii");
+                       // System.out.println("lomng : "+ficheros.length);
                 for (int x = 0; x < ficheros.length; x++) {
                     System.out.println(ficheros[x].getName());
                     File t=ficheros[x];
@@ -50,7 +61,7 @@ public class ReflexionTest {
                     System.out.println("nombre clase "+temp);
                     //Method[] m=temp.getMethods();
                     for(Method m : temp.getMethods()){
-                        System.out.println("popo");
+                        //System.out.println("popo");
                         if(m.isAnnotationPresent(Web.class)){
                             System.out.println("si tiene anota web "+m.getName());
                             try{
